@@ -1,4 +1,7 @@
+using System;
 using System.Linq;
+using System.Net.Mail;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using backend.Models;
 using Microsoft.AspNetCore.Http;
@@ -7,8 +10,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace backend.Controllers
 {
-  [Route("api/[controller]")]
   [ApiController]
+  [Route("[controller]")]
   public class AccountController : ControllerBase
   {
     private readonly AppDB _db;
@@ -29,22 +32,49 @@ namespace backend.Controllers
 
       if (ModelState.IsValid)
       {
-        if (!EmailExist(UserModel.Email))
-          return BadRequest("Email is not avaliable");
+        if (EmailExist(UserModel.Email))
+          return BadRequest("Email is used");
+
+        if (!EmailValid(UserModel.Email))
+          return BadRequest("Email is not valid");
+
+        if (UserNameExist(UserModel.UserName))
+          return BadRequest("UserName is used");
 
         AppUser user = new AppUser
         {
+          UserName = UserModel.UserName,
           Email = UserModel.Email,
           PasswordHash = UserModel.Password
         };
 
-        IdentityResult result = await _manager.CreateAsync(user);
+        IdentityResult result = await _manager.CreateAsync(user, UserModel.Password);
 
         if (result.Succeeded)
           return StatusCode(StatusCodes.Status200OK);
+        else
+          return BadRequest(result.Errors);
       }
 
       return StatusCode(StatusCodes.Status400BadRequest);
+    }
+
+    private bool EmailValid(string email)
+    {
+      try
+      {
+        MailAddress checkedEmail = new MailAddress(email);
+        return true;
+      }
+      catch (System.Exception)
+      {
+        return false;
+      }
+    }
+
+    private bool UserNameExist(string userName)
+    {
+      return _db.Users.Any(u => u.UserName == userName);
     }
 
     private bool EmailExist(string email)

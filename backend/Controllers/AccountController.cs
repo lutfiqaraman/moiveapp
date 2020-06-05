@@ -13,5 +13,12 @@ namespace backend.Controllers
     {
         _db = db;
     }
+
+    [HttpPost]
+    [Route("UserRegister")]
+    public async Task<IActionResult> UserRegister()
+    {
+
+    }
   }
 }

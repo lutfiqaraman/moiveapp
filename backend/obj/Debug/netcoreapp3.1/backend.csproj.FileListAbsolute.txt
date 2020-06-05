@@ -56,3 +56,4 @@ C:\Users\lutfi\Desktop\moiveapp\backend\bin\Debug\netcoreapp3.1\runtimes\unix\li
 C:\Users\lutfi\Desktop\moiveapp\backend\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\lutfi\Desktop\moiveapp\backend\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\lutfi\Desktop\moiveapp\backend\obj\Debug\netcoreapp3.1\backend.csproj.CopyComplete
+C:\Users\lutfi\Desktop\moiveapp\backend\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll

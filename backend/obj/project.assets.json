@@ -5081,11 +5081,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\lutfi\\Desktop\\moiveapp\\backend\\backend.csproj",
+      "projectUniqueName": "C:\\Users\\lutfi\\Desktop\\moiveapp\\backend\\backend.csproj",
       "projectName": "backend",
-      "projectPath": "c:\\Users\\lutfi\\Desktop\\moiveapp\\backend\\backend.csproj",
+      "projectPath": "C:\\Users\\lutfi\\Desktop\\moiveapp\\backend\\backend.csproj",
       "packagesPath": "C:\\Users\\lutfi\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\lutfi\\Desktop\\moiveapp\\backend\\obj\\",
+      "outputPath": "C:\\Users\\lutfi\\Desktop\\moiveapp\\backend\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -5142,6 +5142,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[3.1.2, 3.1.2]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -5150,7 +5156,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
       }
     }
   }

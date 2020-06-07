@@ -16,11 +16,13 @@ namespace backend.Controllers
   {
     private readonly AppDB _db;
     private readonly UserManager<AppUser> _manager;
+    private readonly SignInManager<AppUser> _signInManager;
 
-    public AccountController(AppDB db, UserManager<AppUser> manager)
+    public AccountController(AppDB db, UserManager<AppUser> manager, SignInManager<AppUser> signInManager)
     {
       _db = db;
       _manager = manager;
+      _signInManager = signInManager;
     }
 
     [HttpPost]
@@ -70,6 +72,27 @@ namespace backend.Controllers
       {
         return false;
       }
+    }
+
+    [HttpPost]
+    [Route("UserLogin")]
+    public async Task<IActionResult> UserLogin(Login model)
+    {
+      if (model == null)
+        return NotFound();
+
+      var user = await _manager.FindByEmailAsync(model.Email);
+
+      if (user == null)
+        return NotFound();
+
+      var result = await _signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, false);
+
+      if (result.Succeeded)
+        return Ok("login successfully");
+      else
+        return BadRequest(result.IsNotAllowed);
+      
     }
 
     private bool UserNameExist(string userName)
